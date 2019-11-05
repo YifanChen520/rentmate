@@ -35,7 +35,6 @@ class Register extends Component {
     this.captureEmail = this.captureEmail.bind(this);
     this.capturePhone = this.capturePhone.bind(this);
     this.next = this.next.bind(this);
-    this.validateFields = this.validateFields.bind(this);
     this.hashCode = this.hashCode.bind(this);
     register = register.bind(this);
   }
@@ -77,7 +76,7 @@ class Register extends Component {
       Axios.post("https://whispering-fortress-23669.herokuapp.com/register", {
         firstname: this.state.firstname,
         lastname: this.state.lastname,
-        password: this.hashCode(this.state.password),
+        password: this.state.password,
         email: this.state.email,
         phone: this.state.phone,
         securityQuestion1: this.state.securityQuestion1,
@@ -90,10 +89,10 @@ class Register extends Component {
         response => {
           console.log(response);
           if (response.data.success) {
-            window.location.replace("http://rent-mate.herokuapp.com/login");
+            window.location.replace("https://rent-mate.herokuapp.com/login");
           } else {
             alert("That email is already registered.");
-            window.location.replace("http://rent-mate.herokuapp.com/register");
+            window.location.replace("https://rent-mate.herokuapp.com/register");
           }
         },
         error => {
@@ -103,17 +102,10 @@ class Register extends Component {
     }
   }
 
-  validateFields() {
-    if (this.state.firstname == "" || this.state.lastname == "") {
-      return true;
-    }
-    return false;
-  }
-
   next() {
-    if (this.validateFields) {
+    if (this.state.firstname === "" || this.state.lastname === "") {
       alert("Please fill in all fields before moving on.");
-    } else if (this.state.password != this.state.confirmPassword) {
+    } else if (this.state.password !== this.state.confirmPassword) {
       alert("Passwords do not match. Please try again.");
     } else if (
       !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.state.email)

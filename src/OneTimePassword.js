@@ -20,12 +20,8 @@ class OneTimePassword extends Component {
   }
 
   send() {
-    
-
     if (
-      !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
-        this.state.email
-      )
+      !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.state.email)
     ) {
       alert("Please enter a valid email address.");
     } else {
@@ -35,7 +31,10 @@ class OneTimePassword extends Component {
         response => {
           console.log(response);
           if (response.data.success) {
-            ReactDOM.render(<EnterOTP userEmail={this.state.email} />, document.getElementById("recover-page"));
+            ReactDOM.render(
+              <EnterOTP userEmail={this.state.email} />,
+              document.getElementById("recover-page")
+            );
           } else {
             alert("That is not a registered email.");
           }
@@ -90,24 +89,23 @@ class EnterOTP extends Component {
 
   submit() {
     Axios.post("https://whispering-fortress-23669.herokuapp.com/validateOTP", {
-        email: this.state.email, 
-        otp: this.state.otp
-      }).then(
-        response => {
-          console.log(response);
-          if (response.data.success) {
-            window.location.replace(
-              `http://rent-mate.herokuapp.com/resetpassword`
-            );
-          } else {
-            alert("That is not a registered email.");
-          }
-        },
-        error => {
-          console.log(error);
+      email: this.state.email,
+      otp: this.state.otp
+    }).then(
+      response => {
+        console.log(response);
+        if (response.data.success) {
+          window.location.replace(
+            `http://rent-mate.herokuapp.com/resetpassword?email=${this.state.email}`
+          );
+        } else {
+          alert("That is not a registered email.");
         }
-      );
-    
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   render() {

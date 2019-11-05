@@ -3,10 +3,11 @@ import "./Login.css";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import GoogleLogin from "react-google-login";
+import { ToastsContainer, ToastsStore } from "react-toasts";
 import Axios from "axios";
 
 const failureGoogle = response => {
-  alert("OAuth did not work.");
+  // alert("OAuth did not work.");
 };
 
 class Login extends Component {
@@ -51,10 +52,13 @@ class Login extends Component {
     if (
       /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.state.email)
     ) {
-      Axios.post("https://whispering-fortress-23669.herokuapp.com/login", {
-        email: this.state.email,
-        password: this.state.password
-      }).then(
+      Axios.post(
+        "https://whispering-fortress-23669.herokuapp.com/specificposting/login",
+        {
+          email: this.state.email,
+          password: this.state.password
+        }
+      ).then(
         response => {
           console.log(response);
           if (response.data.success) {

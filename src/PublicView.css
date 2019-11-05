@@ -1,9 +1,39 @@
 #publicview-container {
   display: grid;
-  grid-template-columns: 310px 2fr;
+  grid-template-rows: calc(100vh - 80px) 1fr;
+  grid-template-areas: "header" "body";
+}
+
+div#content-container {
+  display: grid;
+  grid-area: body;
+  grid-template-areas: "search";
+  grid-template-columns: 1fr 2fr;
   grid-template-rows: 1fr;
-  grid-template-areas: "body";
-  margin-top: 20px;
+}
+
+#splash-page {
+  grid-area: header;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+#splash-image {
+  width: 100vw;
+  height: auto;
+  padding-bottom: 200px;
+}
+
+#image-text {
+  position: absolute;
+  color: white;
+  top: 50vh;
+  left: 50vw;
+}
+
+#search {
+  width: 90%;
+  grid-area: search;
 }
 
 .cards {
@@ -11,13 +41,8 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  grid-area: body;
+  grid-area: search;
   grid-column-start: col-start 2;
-}
-
-#search {
-  width: 90%;
-  grid-area: body;
 }
 
 .header {

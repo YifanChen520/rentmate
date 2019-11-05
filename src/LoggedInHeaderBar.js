@@ -10,17 +10,17 @@ class LoggedInHeaderBar extends Component {
   }
 
   returnHome() {
-    window.location.replace("http://rent-mate.herokuapp.com/");
+    window.location.replace("https://rent-mate.herokuapp.com");
   }
 
   dashboardClick() {
-    window.location.replace("http://rent-mate.herokuapp.com/mydashboard");
+    window.location.replace("https://rent-mate.herokuapp.com/mydashboard");
   }
 
   logoutClick() {
     localStorage.removeItem("loggedIn");
     localStorage.removeItem("email");
-    window.location.replace("http://rent-mate.herokuapp.com/");
+    window.location.replace("https://rent-mate.herokuapp.com");
   }
 
   render() {

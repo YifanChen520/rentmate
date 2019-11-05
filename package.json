@@ -17,6 +17,7 @@
     "react-scripts": "3.1.2",
     "react-search-field": "^1.0.0",
     "react-star-rating-component": "^1.4.1",
+    "react-toasts": "^3.0.6",
     "react-transition-group": "^4.3.0",
     "styled-components": "^4.4.1"
   },
